@@ -1,0 +1,41 @@
+# Home bin
+export PATH=$PATH:$HOME/bin
+
+# Alias
+alias diff="diff --color"
+alias g="git"
+alias d="docker"
+alias dc="docker compose"
+#alias k="kubectl"
+alias k="kubecolor"
+alias v="vim"
+alias tf="terraform"
+alias v_ssh="vim ~/.ssh/known_hosts"
+alias v_kube="vim ~/.kube/config"
+alias v_aws="vim ~/.aws/credentials"
+
+# Functions
+function current_branch() {
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    echo ${ref#refs/heads/}
+}
+
+function gpull() {
+    git pull origin $(current_branch)
+}
+
+function gpush() {
+    git push origin $(current_branch)
+}
+
+
+k3s_reboot() {
+  ssh pi@k3s-3 "sudo reboot"
+  ssh pi@k3s-2 "sudo reboot"
+  ssh pi@k3s-1 "sudo reboot"
+  ssh pi@k3s-0 "sudo reboot"
+}
+alias k3s-reboot=k3s_reboot
+
+
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
