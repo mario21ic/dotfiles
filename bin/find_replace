@@ -1,0 +1,2 @@
+
+find ./k8s/api-init -type f -exec sed -i '' 's/core-/hotels-/g' {} +
