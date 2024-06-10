@@ -1,0 +1,4 @@
+#!/bin/bash
+set -xe
+
+docker service ps $(docker service ls --format "{{.ID}}")
