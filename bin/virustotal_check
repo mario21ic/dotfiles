@@ -1,0 +1,8 @@
+#!/bin/bash
+# syntax: file.exe
+set -xe
+
+FILE=$1
+SUM=$(md5sum $FILE|awk '{ print $1 }'|tr -d ' ')
+URL="https://www.virustotal.com/gui/file/"$SUM
+echo "Open $URL"
